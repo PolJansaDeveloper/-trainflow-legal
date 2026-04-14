@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TrainFlow – Legal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #0d0d0d;
+      --surface: #161616;
+      --border: #2a2a2a;
+      --accent: #e8ff47;
+      --accent2: #ff6b35;
+      --text: #e8e8e8;
+      --muted: #777;
+      --heading-font: 'Bebas Neue', sans-serif;
+      --body-font: 'DM Sans', sans-serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: var(--bg); color: var(--text); font-family: var(--body-font); font-size: 15px; line-height: 1.75; }
+
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,13,13,0.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .logo { font-family: var(--heading-font); font-size: 1.8rem; letter-spacing: 2px; color: var(--accent); }
+    .logo span { color: var(--accent2); }
+
+    .lang-switch {
+      display: flex;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .lang-btn {
+      background: none; border: none;
+      color: var(--muted); font-family: var(--body-font);
+      font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 1px; text-transform: uppercase;
+      padding: 0.4rem 0.9rem; cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .lang-btn.active { background: var(--accent); color: #000; }
+
+    .hero { padding: 5rem 2rem 3rem; max-width: 860px; margin: 0 auto; }
+    .hero-label {
+      display: inline-block; font-size: 0.7rem; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--accent);
+      border: 1px solid var(--accent); padding: 0.25rem 0.75rem; margin-bottom: 1.5rem;
+    }
+    .hero h1 { font-family: var(--heading-font); font-size: clamp(3rem, 8vw, 6rem); line-height: 0.95; letter-spacing: 2px; margin-bottom: 1.5rem; }
+    .hero h1 em { font-style: normal; color: var(--accent); display: block; }
+    .hero p { color: var(--muted); max-width: 520px; font-size: 0.9rem; }
+
+    .tab-bar {
+      max-width: 860px; margin: 0 auto; padding: 0 2rem;
+      display: flex; border-bottom: 1px solid var(--border);
+    }
+    .tab-btn {
+      background: none; border: none; color: var(--muted);
+      font-family: var(--body-font); font-size: 0.8rem; font-weight: 500;
+      letter-spacing: 1px; text-transform: uppercase;
+      padding: 1rem 1.5rem; cursor: pointer;
+      border-bottom: 2px solid transparent; margin-bottom: -1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+    .content { max-width: 860px; margin: 0 auto; padding: 3rem 2rem 6rem; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    .section { margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid var(--border); }
+    .section:last-child { border-bottom: none; }
+    .section-number { font-family: var(--heading-font); font-size: 4rem; color: var(--border); line-height: 1; margin-bottom: 0.25rem; }
+    .section h2 { font-family: var(--heading-font); font-size: 1.6rem; letter-spacing: 2px; color: var(--text); margin-bottom: 1rem; }
+    .section h2 .accent { color: var(--accent); }
+    .section p { color: #aaa; margin-bottom: 0.75rem; font-size: 0.9rem; }
+    .section ul { list-style: none; margin: 0.75rem 0; }
+    .section ul li { color: #aaa; font-size: 0.9rem; padding: 0.35rem 0 0.35rem 1.25rem; position: relative; }
+    .section ul li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 0.75rem; }
+
+    .highlight { background: var(--surface); border-left: 3px solid var(--accent); padding: 1rem 1.25rem; margin: 1rem 0; font-size: 0.85rem; color: #bbb; }
+    .highlight strong { color: var(--accent); }
+
+    .contact-box { background: var(--surface); border: 1px solid var(--border); padding: 1.5rem; margin-top: 1rem; }
+    .contact-box a { color: var(--accent); text-decoration: none; }
+
+    .date-badge { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 2rem; }
+    .date-badge::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+
+    footer { border-top: 1px solid var(--border); padding: 2rem; text-align: center; color: var(--muted); font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; }
+    footer span { color: var(--accent); }
+
+    .lang-block { display: none; }
+    body.lang-en .lang-block.en { display: block; }
+    body.lang-es .lang-block.es { display: block; }
+    span.lang-inline { display: none; }
+    body.lang-en span.lang-inline.en { display: inline; }
+    body.lang-es span.lang-inline.es { display: inline; }
+
+    @media (max-width: 600px) {
+      .hero { padding: 3rem 1.25rem 2rem; }
+      .tab-bar { padding: 0 1.25rem; }
+      .content { padding: 2rem 1.25rem 4rem; }
+    }
+  </style>
+</head>
+<body class="lang-en">
+
+<header>
+  <div class="logo">Train<span>Flow</span></div>
+  <div class="lang-switch">
+    <button class="lang-btn active" onclick="setLang('en',this)">EN</button>
+    <button class="lang-btn" onclick="setLang('es',this)">ES</button>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-label">
+    <span class="lang-inline en">Legal Documents</span>
+    <span class="lang-inline es">Documentos Legales</span>
+  </div>
+  <h1>Train<em>Flow</em></h1>
+  <p>
+    <span class="lang-inline en">Privacy Policy and Terms &amp; Conditions for the TrainFlow application.</span>
+    <span class="lang-inline es">Política de Privacidad y Términos y Condiciones de la aplicación TrainFlow.</span>
+  </p>
+</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('privacy',this)">
+    <span class="lang-inline en">Privacy Policy</span>
+    <span class="lang-inline es">Política de Privacidad</span>
+  </button>
+  <button class="tab-btn" onclick="switchTab('terms',this)">
+    <span class="lang-inline en">Terms &amp; Conditions</span>
+    <span class="lang-inline es">Términos y Condiciones</span>
+  </button>
+</div>
+
+<div class="content">
+
+  <!-- ====== PRIVACY ====== -->
+  <div id="privacy" class="tab-panel active">
+
+    <!-- EN -->
+    <div class="lang-block en">
+      <div class="date-badge">Effective date: April 14, 2025</div>
+      <div class="section">
+        <div class="section-number">01</div>
+        <h2>WHO <span class="accent">WE ARE</span></h2>
+        <p>TrainFlow is a mobile application designed to help users perform Tabata, HIIT, and interval training workouts. The app is developed and maintained as an independent project.</p>
+        <p>Questions? Contact us at: <strong>poljansa.developer@gmail.com</strong></p>
+      </div>
+      <div class="section">
+        <div class="section-number">02</div>
+        <h2>DATA WE <span class="accent">DO NOT COLLECT</span></h2>
+        <div class="highlight"><strong>TrainFlow does not require an account.</strong> We do not collect your name, email address, phone number, or any personally identifiable information.</div>
+        <p>We do NOT collect or store:</p>
+        <ul>
+          <li>Personal identification data (name, email, phone, etc.)</li>
+          <li>Location data</li>
+          <li>Contact lists or device content</li>
+          <li>Health or biometric data transmitted to our servers</li>
+          <li>Login credentials of any kind</li>
+        </ul>
+      </div>
+      <div class="section">
+        <div class="section-number">03</div>
+        <h2>DATA STORED <span class="accent">ON YOUR DEVICE</span></h2>
+        <p>TrainFlow stores your workout data exclusively on your own device using Android's local Room database. This data never leaves your device and is not accessible to us.</p>
+        <ul>
+          <li>Workout configurations and presets</li>
+          <li>Training history and session logs</li>
+          <li>App preferences and settings</li>
+        </ul>
+        <div class="highlight">All data is stored locally and deleted if you uninstall the app. We have no access to it at any time.</div>
+      </div>
+      <div class="section">
+        <div class="section-number">04</div>
+        <h2>ADVERTISING &amp; <span class="accent">THIRD PARTIES</span></h2>
+        <p>TrainFlow displays ads provided by <strong>Google AdMob</strong>. We use <strong>non-personalized ads only</strong> — ads are not targeted based on your personal profile or browsing history.</p>
+        <p>Google AdMob may collect certain technical data to serve ads, including:</p>
+        <ul>
+          <li>IP address (to determine approximate region)</li>
+          <li>Advertising ID (for ad frequency capping)</li>
+          <li>Device type and operating system version</li>
+          <li>App interaction data (impressions, clicks)</li>
+        </ul>
+        <p>This data is processed by Google under their own Privacy Policy: <a href="https://policies.google.com/privacy" target="_blank" style="color:var(--accent)">policies.google.com/privacy</a></p>
+      </div>
+      <div class="section">
+        <div class="section-number">05</div>
+        <h2>CHILDREN'S <span class="accent">PRIVACY</span></h2>
+        <p>TrainFlow does not knowingly collect any information from children under 13. Since we collect no personal data, there is no risk of inadvertent collection from minors.</p>
+      </div>
+      <div class="section">
+        <div class="section-number">06</div>
+        <h2>YOUR <span class="accent">RIGHTS (GDPR)</span></h2>
+        <p>If you are in the EU/EEA, you have rights under GDPR. Since we collect no personal data, these rights apply mainly to data held by Google AdMob. Manage your Google data at <a href="https://myaccount.google.com" target="_blank" style="color:var(--accent)">myaccount.google.com</a>.</p>
+        <ul>
+          <li>Right to access your data</li>
+          <li>Right to data portability</li>
+          <li>Right to erasure ("right to be forgotten")</li>
+          <li>Right to restrict or object to processing</li>
+        </ul>
+      </div>
+      <div class="section">
+        <div class="section-number">07</div>
+        <h2>CHANGES TO THIS <span class="accent">POLICY</span></h2>
+        <p>We may update this Privacy Policy at any time. Changes will be reflected on this page with an updated effective date.</p>
+      </div>
+      <div class="section">
+        <div class="section-number">08</div>
+        <h2>CONTACT <span class="accent">US</span></h2>
+        <div class="contact-box">
+          <p>For any privacy-related questions:</p>
+          <p style="margin-top:0.5rem"><a href="mailto:poljansa.developer@gmail.com">poljansa.developer@gmail.com</a></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ES -->
+    <div class="lang-block es">
+      <div class="date-badge">Fecha de entrada en vigor: 14 de abril de 2025</div>
+      <div class="section">
+        <div class="section-number">01</div>
+        <h2>QUIÉNES <span class="accent">SOMOS</span></h2>
+        <p>TrainFlow es una aplicación móvil diseñada para ayudar a los usuarios a realizar entrenamientos Tabata, HIIT y de intervalos. La app es desarrollada y mantenida como proyecto independiente.</p>
+        <p>¿Tienes preguntas? Contáctanos en: <strong>poljansa.developer@gmail.com</strong></p>
+      </div>
+      <div class="section">
+        <div class="section-number">02</div>
+        <h2>DATOS QUE <span class="accent">NO RECOPILAMOS</span></h2>
+        <div class="highlight"><strong>TrainFlow no requiere cuenta.</strong> No recopilamos tu nombre, correo electrónico, número de teléfono ni ningún dato de identificación personal.</div>
+        <p>NO recopilamos ni almacenamos:</p>
+        <ul>
+          <li>Datos de identificación personal (nombre, email, teléfono, etc.)</li>
+          <li>Datos de ubicación</li>
+          <li>Listas de contactos o contenido del dispositivo</li>
+          <li>Datos de salud o biométricos transmitidos a nuestros servidores</li>
+          <li>Credenciales de acceso de ningún tipo</li>
+        </ul>
+      </div>
+      <div class="section">
+        <div class="section-number">03</div>
+        <h2>DATOS GUARDADOS <span class="accent">EN TU DISPOSITIVO</span></h2>
+        <p>TrainFlow guarda tus datos de entrenamiento exclusivamente en tu dispositivo usando la base de datos local Room de Android. Estos datos nunca salen de tu dispositivo y no son accesibles para nosotros.</p>
+        <ul>
+          <li>Configuraciones y preajustes de entrenamiento</li>
+          <li>Historial de sesiones</li>
+          <li>Preferencias y ajustes de la app</li>
+        </ul>
+        <div class="highlight">Todos los datos se almacenan localmente y se eliminan si desinstala la app. No tenemos acceso a ellos en ningún momento.</div>
+      </div>
+      <div class="section">
+        <div class="section-number">04</div>
+        <h2>PUBLICIDAD Y <span class="accent">TERCEROS</span></h2>
+        <p>TrainFlow muestra anuncios proporcionados por <strong>Google AdMob</strong>. Utilizamos <strong>anuncios no personalizados</strong> — los anuncios no se dirigen en función de tu perfil o historial de navegación.</p>
+        <p>Google AdMob puede recopilar ciertos datos técnicos para mostrar anuncios, incluyendo:</p>
+        <ul>
+          <li>Dirección IP (para determinar la región aproximada)</li>
+          <li>ID de publicidad (para limitar la frecuencia de anuncios)</li>
+          <li>Tipo de dispositivo y versión del sistema operativo</li>
+          <li>Datos de interacción con la app (impresiones, clics)</li>
+        </ul>
+        <p>Estos datos son procesados por Google según su propia Política de Privacidad: <a href="https://policies.google.com/privacy" target="_blank" style="color:var(--accent)">policies.google.com/privacy</a></p>
+      </div>
+      <div class="section">
+        <div class="section-number">05</div>
+        <h2>PRIVACIDAD DE <span class="accent">MENORES</span></h2>
+        <p>TrainFlow no recopila conscientemente información de menores de 13 años. Al no recopilar datos personales, no existe riesgo de recopilación involuntaria de menores.</p>
+      </div>
+      <div class="section">
+        <div class="section-number">06</div>
+        <h2>TUS DERECHOS <span class="accent">(RGPD)</span></h2>
+        <p>Si te encuentras en la UE/EEE, tienes derechos bajo el RGPD. Como no recopilamos datos personales, estos derechos se aplican principalmente a los datos gestionados por Google AdMob. Gestiona tus datos en <a href="https://myaccount.google.com" target="_blank" style="color:var(--accent)">myaccount.google.com</a>.</p>
+        <ul>
+          <li>Derecho de acceso a tus datos</li>
+          <li>Derecho a la portabilidad de datos</li>
+          <li>Derecho al olvido</li>
+          <li>Derecho a limitar u oponerse al tratamiento</li>
+        </ul>
+      </div>
+      <div class="section">
+        <div class="section-number">07</div>
+        <h2>CAMBIOS EN ESTA <span class="accent">POLÍTICA</span></h2>
+        <p>Podemos actualizar esta Política de Privacidad en cualquier momento. Los cambios se reflejarán en esta página con una fecha actualizada.</p>
+      </div>
+      <div class="section">
+        <div class="section-number">08</div>
+        <h2><span class="accent">CONTÁCTANOS</span></h2>
+        <div class="contact-box">
+          <p>Para cualquier consulta relacionada con la privacidad:</p>
+          <p style="margin-top:0.5rem"><a href="mailto:poljansa.developer@gmail.com">poljansa.developer@gmail.com</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== TERMS ====== -->
+  <div id="terms" class="tab-panel">
+
+    <!-- EN -->
+    <div class="lang-block en">
+      <div class="date-badge">Effective date: April 14, 2025</div>
+      <div class="section">
+        <div class="section-number">01</div>
+        <h2>ACCEPTANCE OF <span class="accent">TERMS</span></h2>
+        <p>By downloading, installing, or using TrainFlow ("the App"), you agree to be bound by these Terms and Conditions. If you do not agree, please do not use the App.</p>
+      </div>
+      <div class="section">
+        <div class="section-number">02</div>
+        <h2>USE OF <span class="accent">THE APP</span></h2>
+        <p>TrainFlow is a fitness timer application for Tabata, HIIT, and interval-based workouts for personal, non-commercial use only.</p>
+        <ul>
+          <li>You must not attempt to reverse-engineer, copy or redistribute the App</li>
+          <li>You must not use the App in any way that could cause harm to others</li>
+        </ul>
+      </div>
+      <div class="section">
+        <div class="section-number">03</div>
+        <h2>HEALTH &amp; <span class="accent">FITNESS DISCLAIMER</span></h2>
+        <div class="highlight"><strong>Important:</strong> TrainFlow is a timing tool only. It does not provide medical advice, diagnosis, or treatment.</div>
+        <p>Always consult a qualified healthcare professional before starting any new exercise program. By using TrainFlow, you acknowledge that:</p>
+        <ul>
+          <li>High-intensity exercise carries inherent physical risks</li>
+          <li>You are solely responsible for assessing your own fitness level</li>
+          <li>We are not liable for any injury resulting from use of the App</li>
+          <li>Stop exercising immediately if you feel pain, dizziness, or discomfort</li>
+        </ul>
+      </div>
+      <div class="section">
+        <div class="section-number">04</div>
+        <h2>INTELLECTUAL <span class="accent">PROPERTY</span></h2>
+        <p>All content within the App — design, graphics, code, and branding — is the exclusive property of TrainFlow and protected by applicable intellectual property laws. You are granted a limited, non-exclusive, non-transferable license to use the App for personal purposes only.</p>
+      </div>
+      <div class="section">
+        <div class="section-number">05</div>
+        <h2>IN-APP PURCHASES &amp; <span class="accent">PREMIUM</span></h2>
+        <p>TrainFlow is free to download and use. An optional premium version with additional features may be available as an in-app purchase. Free users will always have access to the core functionality of the app.</p>
+        <ul>
+          <li>All purchases are processed securely by Google Play</li>
+          <li>Purchases are final unless otherwise required by applicable law</li>
+          <li>We reserve the right to modify premium features at any time</li>
+        </ul>
+      </div>
+      <div class="section">
+        <div class="section-number">06</div>
+        <h2>ADVERTISING &amp; <span class="accent">IN-APP CONTENT</span></h2>
+        <p>TrainFlow displays non-personalized advertisements provided by Google AdMob. We are not responsible for the content of third-party advertisements displayed within the App.</p>
+      </div>
+      <div class="section">
+        <div class="section-number">07</div>
+        <h2>LIMITATION OF <span class="accent">LIABILITY</span></h2>
+        <p>To the maximum extent permitted by law, TrainFlow shall not be liable for any indirect, incidental, or consequential damages arising from your use of the App, including:</p>
+        <ul>
+          <li>Physical injury during exercise</li>
+          <li>Loss of data stored on your device</li>
+          <li>Interruptions or errors in app functionality</li>
+        </ul>
+      </div>
+      <div class="section">
+        <div class="section-number">08</div>
+        <h2>TERMINATION &amp; <span class="accent">CHANGES</span></h2>
+        <p>We reserve the right to modify, suspend, or discontinue the App at any time. We may also update these Terms at any time. Continued use of the App after changes constitutes your acceptance of the revised Terms.</p>
+      </div>
+      <div class="section">
+        <div class="section-number">09</div>
+        <h2>GOVERNING <span class="accent">LAW</span></h2>
+        <p>These Terms shall be governed by the laws of Spain. Any disputes shall be subject to the exclusive jurisdiction of the courts of Spain.</p>
+      </div>
+      <div class="section">
+        <div class="section-number">10</div>
+        <h2>CONTACT <span class="accent">US</span></h2>
+        <div class="contact-box">
+          <p>For any questions regarding these Terms:</p>
+          <p style="margin-top:0.5rem"><a href="mailto:poljansa.developer@gmail.com">poljansa.developer@gmail.com</a></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ES -->
+    <div class="lang-block es">
+      <div class="date-badge">Fecha de entrada en vigor: 14 de abril de 2025</div>
+      <div class="section">
+        <div class="section-number">01</div>
+        <h2>ACEPTACIÓN DE <span class="accent">TÉRMINOS</span></h2>
+        <p>Al descargar, instalar o utilizar TrainFlow ("la App"), aceptas quedar vinculado por estos Términos y Condiciones. Si no estás de acuerdo, no utilices la App.</p>
+      </div>
+      <div class="section">
+        <div class="section-number">02</div>
+        <h2>USO DE <span class="accent">LA APP</span></h2>
+        <p>TrainFlow es una aplicación de temporizador de fitness para entrenamientos Tabata, HIIT y de intervalos, para uso personal y no comercial.</p>
+        <ul>
+          <li>No debes intentar descompilar, copiar o redistribuir la App</li>
+          <li>No debes utilizar la App de ninguna manera que pueda causar daño a terceros</li>
+        </ul>
+      </div>
+      <div class="section">
+        <div class="section-number">03</div>
+        <h2>AVISO SOBRE <span class="accent">SALUD Y FITNESS</span></h2>
+        <div class="highlight"><strong>Importante:</strong> TrainFlow es únicamente una herramienta de temporización. No proporciona consejo médico, diagnóstico ni tratamiento.</div>
+        <p>Consulta siempre a un profesional de la salud antes de comenzar cualquier programa de ejercicio. Al usar TrainFlow, reconoces que:</p>
+        <ul>
+          <li>El ejercicio de alta intensidad conlleva riesgos físicos inherentes</li>
+          <li>Eres el único responsable de evaluar tu nivel de condición física</li>
+          <li>No somos responsables de ninguna lesión derivada del uso de la App</li>
+          <li>Debes dejar de hacer ejercicio si sientes dolor, mareos o malestar</li>
+        </ul>
+      </div>
+      <div class="section">
+        <div class="section-number">04</div>
+        <h2>PROPIEDAD <span class="accent">INTELECTUAL</span></h2>
+        <p>Todo el contenido de la App — diseño, gráficos, código y marca — es propiedad exclusiva de TrainFlow y está protegido por las leyes de propiedad intelectual. Se te otorga una licencia limitada, no exclusiva e intransferible para uso personal únicamente.</p>
+      </div>
+      <div class="section">
+        <div class="section-number">05</div>
+        <h2>COMPRAS Y <span class="accent">VERSIÓN PREMIUM</span></h2>
+        <p>TrainFlow es gratuita para descargar y usar. Una versión premium con funciones adicionales puede estar disponible como compra opcional dentro de la app. Los usuarios gratuitos siempre tendrán acceso a la funcionalidad básica.</p>
+        <ul>
+          <li>Todas las compras son procesadas de forma segura por Google Play</li>
+          <li>Las compras son definitivas salvo lo exigido por la legislación aplicable</li>
+          <li>Nos reservamos el derecho de modificar las funciones premium en cualquier momento</li>
+        </ul>
+      </div>
+      <div class="section">
+        <div class="section-number">06</div>
+        <h2>PUBLICIDAD Y <span class="accent">CONTENIDO</span></h2>
+        <p>TrainFlow muestra anuncios no personalizados proporcionados por Google AdMob. No somos responsables del contenido de los anuncios de terceros mostrados en la App.</p>
+      </div>
+      <div class="section">
+        <div class="section-number">07</div>
+        <h2>LIMITACIÓN DE <span class="accent">RESPONSABILIDAD</span></h2>
+        <p>En la máxima medida permitida por la ley, TrainFlow no será responsable de ningún daño indirecto o consecuente derivado del uso de la App, incluyendo:</p>
+        <ul>
+          <li>Lesiones físicas durante el ejercicio</li>
+          <li>Pérdida de datos almacenados en tu dispositivo</li>
+          <li>Interrupciones o errores en la funcionalidad de la app</li>
+        </ul>
+      </div>
+      <div class="section">
+        <div class="section-number">08</div>
+        <h2>MODIFICACIONES Y <span class="accent">CAMBIOS</span></h2>
+        <p>Nos reservamos el derecho de modificar, suspender o interrumpir la App en cualquier momento. El uso continuado de la App tras los cambios implica la aceptación de los Términos revisados.</p>
+      </div>
+      <div class="section">
+        <div class="section-number">09</div>
+        <h2>LEGISLACIÓN <span class="accent">APLICABLE</span></h2>
+        <p>Estos Términos se regirán por la legislación española. Cualquier disputa estará sujeta a la jurisdicción exclusiva de los tribunales de España.</p>
+      </div>
+      <div class="section">
+        <div class="section-number">10</div>
+        <h2><span class="accent">CONTÁCTANOS</span></h2>
+        <div class="contact-box">
+          <p>Para cualquier consulta sobre estos Términos:</p>
+          <p style="margin-top:0.5rem"><a href="mailto:poljansa.developer@gmail.com">poljansa.developer@gmail.com</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2025 <span>TrainFlow</span> · All rights reserved · poljansa.developer@gmail.com</p>
+</footer>
+
+<script>
+  function switchTab(id, btn) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+  function setLang(lang, btn) {
+    document.body.className = 'lang-' + lang;
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+</script>
+
+</body>
+</html>
